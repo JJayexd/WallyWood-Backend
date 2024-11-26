@@ -1,7 +1,16 @@
 import express from 'express';
+import cors from "cors";
 
 const app = express();
 app.use(express.urlencoded({ extended: true }));
+
+app.use(cors())
+app.use((req, res, next) => {
+	res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+	res.append('Access-Control-Allow-Credentials', true);
+	res.append('Access-Control-Allow-Headers', 'Content-Type');
+	next();
+})
 
 import dotenv from 'dotenv';
 

@@ -5,7 +5,7 @@ export class PosterModel {
         try {
             const { data, error } = await supabase
             .from('posters')
-            .select('id, name, slug, description, price, stock');
+            .select('id, name, slug, description, image, price, stock, genre_poster_rel( genres (id,title) )');
             if (error) {
                 throw new Error(error.message);
             }
